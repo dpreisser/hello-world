@@ -1,0 +1,126 @@
+0) a) git --help:
+      Get help for git in general.
+   b) get help <command>:
+      Get specific help for the <command>.
+
+1) git config:
+   a) --list: To see what keys are already there.
+   b) --get: 1 Value; --get-all: all values
+      Examples: git config -get-all user.name
+      		git config -get-all user.email
+                git config -get-all merge.tool
+                git config -get-all mergetool.bc3.cmd
+		
+   c) --global: Set keys in the global config file.
+      Examples: git config --global user.name "your name"
+      		git config --global user.email "your email"
+
+2) git init:
+   Must be called in the directory where work with git is intended.
+
+3) git clone <repository>; git clone <protocol>://github.com/user.name/<repository>:
+   Make a local copy from the remote repository.
+   <protocol>: ssh, https, file, git, ...
+   <repository>: name of repository
+
+4) git log:
+   Retrieve information about the history.
+   a) --graph: Display inheritance graph.
+   b) --decorate: Diplay where master and branches end (respective HEAD).
+   c) --pretty=oneline; --oneline: shorten the output per log entry to one line.
+   d) --pretty=<format>
+      <format>: oneline, short, medium, full, fuller, ...
+   e) --name-status: What type of change: Addition, Deletion, Merge.
+
+5) git add <file name>; git add *; git add <directory>:
+   Adding a single file, files or directories.
+   This is also necessary if file has changes.
+
+6) git status:
+   Shows the status of the active branch.
+   Files which have changed or files which are not added to git.
+
+7) Branches are versions of the same repository.
+   One branch is always there and is called master.
+
+   a) git branch: Shows the branches and which one is active (marked with *).
+   b) git branch <branch>: Creates a new <branch> without making it active.
+   c) git branch -d <branch>: Deletes <branch>.
+
+8) a) git checkout <branch>: Switch to existing <branch>.
+   b) git checkout -b <branch>: Creates a new <branch> and makes it active.
+
+9) git commit <file> -m "your message":
+   Make the change to the local active branch and not to the remote repository.
+
+10) a) git remote add <your memo> <protocol>://github.com/user.name/<repository>:
+       <your memo> is now an abbreviation of <protocol>://github.com/user.name/<repository>.
+    b) git remote -v:
+       Lists all your memos.
+    
+11) git push <your memo> <branch>:
+    Submits the changes to the remote repository and branch.
+
+12) git pull:
+    Gets the latest changes from the remote repository.
+
+13) git checkout -- <file>:
+    Undo local changes to <file> if not committed.
+
+14) git revert <commit1> <commit2> ...; git revert <commit1>..<commit2>:
+    Revert the corresponding commits with another commit.
+
+15) git fetch <your memo>; git reset --hard <your memo>/master:
+    These 2 commands are needed if changes should be unrolled and
+    these are already committed to the local repository.
+
+16) git reset --<modifer> <commit>:
+    If <commit> is omitted HEAD is assumed.
+    <modifier>:
+    a) soft: only HEAD will be changed
+    b) mixed: Additionally the index willl be changed.
+    c) hard: Additionally the work tree will be changed.
+    d) merge: Merges changes between HEAD and <commit> into relevant files.
+       	      Not possible if file in work tree is also different to the index
+	      that means if file in work tree has also unadded changes.
+    e) keep: Merges changes between HEAD and <commit> into relevant files.
+       	     Not possible if file in working tree is also different to HEAD.
+
+15) git rebase foo bar:
+    This needs some explanation:
+
+    Assume three branches with letters A, B, C, ... to mark the sequence of commits
+    (instead of dealing with hash keys):
+    Branch bar: A, B, C, D, E
+    Branch foo: Departing from commit B: F, G, H
+    Branch baz: Departing from C: I, J, K
+
+    In a first step this is equivalent to:
+
+    git checkout foo
+    git checkout -b newbar
+    git cherry-pick C, D, E
+
+    After this:
+
+    foo points still to commit H.
+
+    newbar points to the new head N:
+    Changes B->C commit L (H->L)
+    Changes C->D commit M (L->M)
+    Changes D->E commit N (M->N)
+
+    branches bar and baz are unchanged.
+
+    In a subsequent second step this is equivalent to:
+
+    git checkout bar
+    git reset --hard newbar
+    git branch -d newbar
+
+    branch foo points still to commit H.
+    branch bar points to commit N.
+    branch baz is unchanged.
+
+    Commits D and E will be deleted since they are not accessible by any branch
+    (git garbage collection).
