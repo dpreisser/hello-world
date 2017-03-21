@@ -5,11 +5,11 @@
 
 1) git config:
    a) --list: To see what keys are already there.
-   b) --get: 1 Value; --get-all: all values
-      Examples: git config -get-all user.name
-      		git config -get-all user.email
-                git config -get-all merge.tool
-                git config -get-all mergetool.bc3.cmd
+   b) --get <item>: 1 value; --get-all <item>: all values
+      Examples: git config --get-all user.name
+      		git config --get-all user.email
+                git config --get-all merge.tool
+                git config --get-all mergetool.bc3.cmd
 		
    c) --global: Set keys in the global config file.
       Examples: git config --global user.name "your name"
@@ -78,7 +78,7 @@
     If <commit> is omitted HEAD is assumed.
     <modifier>:
     a) soft: only HEAD will be changed
-    b) mixed: Additionally the index willl be changed.
+    b) mixed: Additionally the index will be changed.
     c) hard: Additionally the work tree will be changed.
     d) merge: Merges changes between HEAD and <commit> into relevant files.
        	      Not possible if file in work tree is also different to the index
