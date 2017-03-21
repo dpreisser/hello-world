@@ -82,7 +82,7 @@
     c) hard: Additionally the work tree will be changed.
     d) merge: Merges changes between HEAD and <commit> into relevant files.
        	      Not possible if file in work tree is also different to the index
-	      that means if file in work tree has also unadded changes.
+              that means if file in work tree has also unadded changes.
     e) keep: Merges changes between HEAD and <commit> into relevant files.
        	     Not possible if file in working tree is also different to HEAD.
 
