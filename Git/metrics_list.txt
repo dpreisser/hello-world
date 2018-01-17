@@ -1,0 +1,126 @@
+
+=== Requirement scope ===
+
+requirements
+requirements_passed
+pct_requirements_passed
+pct_requirements_tested
+global_requirements
+
+=== File scope ===
+
+file_count
+file_without_test_count
+
+comment_lines
+code_lines
+blank_lines
+total_lines
+
+comment_source_ratio
+comment_density
+
+=== Function Scope ===
+
+>>> Counts Primary <<<
+
+count
+
+statements
+branches
+mcdc_branches
+mcdc_pairs
+complexity
+
+>>> Counts Tests <<<
+
+tests_total
+tests_passed
+tests_failed
+tests_skipped
+
+remaining_tests
+
+tests_with_expected_no_reqs
+tests_with_expected_and_reqs
+tests_with_expected
+
+unit_tests
+system_tests
+
+functions_without_tests
+
+failed_expected
+expected_total
+failed_control_flow
+control_flow_total
+signals
+
+>>> Counts Coverage <<<
+
+covered_statements
+uncovered_statements
+
+covered_branches
+partial_branches
+uncovered_branches
+
+covered_mcdc_branches
+uncovered_mcdc_branches
+
+covered_mcdc_pairs
+uncovered_mcdc_pairs
+
+functions_without_coverage
+
+>>> Relative Primary <<<
+
+>>> Relative Tests <<<
+
+tests_passed_pct
+pct_remaining_tests
+
+>>> Relative Coverage <<<
+
+covered_pct
+uncovered_pct
+pct_covered_branches
+pct_covered_mcdc_branches
+pct_covered_mcdc_pairs
+
+pct_functions_without_coverage
+
+>>> Average Coverage <<<
+
+avg_statements_function
+avg_branches_function
+avg_mcdc_branches_function
+avg_mcdc_pairs_function
+avg_complexity
+
+>>> Average Relative Coverage <<<
+
+avg_covered_pct
+avg_covered_branch_pct
+avg_covered_mcdc_branch_pct
+avg_covered_mcdc_pair_pct
+
+=== Static Analysis ===  
+
+>>> Counts <x> (<x> - lint,klockwork) <<<
+
+<x>_total_issues
+<x>_misra
+<x>_errors
+<x>_warnings
+<x>_info
+
+<x>_clean_functions
+
+>>> Relative <x> (<x> - lint,klockwork) <<<
+
+<x>_pct_clean_functions
+
+>>> Average <x> (<x> - lint,klockwork) <<<
+
+<x>_avg_issues_per_function
