@@ -1,0 +1,95 @@
+{
+    "version"   : "0.1",
+    "organization" : "group_file",
+    "display_requirements" : [
+        "my_example_plugin_enabled"
+    ],
+    "head_metrics" : [
+        "numCharsFunc",
+        "avgNumCharsFunc"
+    ],
+    "dashboard" : {
+        "name"          : "My Example Dashboard",
+        "description"   : "First trial",
+        "rows"          : [
+            {
+                "name"      : "Summaries",
+                "widgets"   : [
+                    {
+                        "name"          : "Metrics",
+			"description"   : "Example Metrics",
+                        "grouping"      : "func",
+                        "metrics"       : [
+                           "numCharsFunc",
+        		   "avgNumCharsFunc"
+                        ],
+                        "widget_type"       : "summary",
+                        "interact_group": "all"
+                    }
+                ]
+            },
+            {
+                "name"      : "Tree Maps",
+                "widgets"   : [
+                    {
+                        "name"          : "Number of characters (size) vs. Coverage (color)",
+                        "description"   : "Typical file hierarchy",
+                        "grouping"      : "file",
+                        "metrics"       : ["numCharsFunc", "covered_pct"],
+                        "widget_type"       : "treemap",
+                        "color_scale"   : [0,1],
+			"interact_group": "all"	
+                    }
+                ]
+            },
+            {
+                "name"      : "Tables",
+                "widgets"   : [
+                    {
+                        "name"          : "Highest Character Count",
+                        "description"   : "Function with highest number of characters",
+                        "grouping"      : "func",
+                        "metrics"       : [ "numCharsFunc" ],
+                        "widget_type"       : "tablegroup",
+                        "size"          : 5,
+                        "hide_zeros"        : true,
+                        "interact_group": "all"
+                    },
+                    {
+                        "name"          : "Highest Average Character Count",
+                        "description"   : "Files with highest average number of characters per function",
+                        "grouping"      : "file",
+                        "metrics"       : [ "avgNumCharsFunc" ],
+                        "widget_type"       : "tablegroup",
+                        "size"          : 5,
+                        "hide_zeros"        : true,
+                        "interact_group": "all"
+                    }
+
+                ]
+            },
+            {
+                "name"      : "Charts",
+                "widgets"   : [
+                    {
+                        "name"          : "Branch Coverage distribution",
+			"description"   : "Average branch coverage per complexity group",
+                        "grouping"      : "group_complexity",
+                        "metrics"       : "pct_covered_branches",
+                        "widget_type"   : "barchart",
+                        "interact_group": "all"
+                    },
+                    {
+                        "name"          : "Complexity distribution",
+			"description"   : "Count of functions per complexity group",
+                        "grouping"      : "group_complexity",
+                        "metrics"       : "count",
+                        "widget_type"   : "piechart",
+                        "colors"        : "RdYlGn.reverse",
+                        "interact_group": "all"
+                    }
+                ]
+            }
+        ]
+    }
+}

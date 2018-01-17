@@ -1,0 +1,10 @@
+log_tax_receipts:69
+Add_Tax_Tip:469
+Add_Included_Dessert:379
+Place_Order:1115
+Clear_Table:408
+Get_Check_Total:115
+Add_Party_To_Waiting_List:205
+Get_Next_Party_To_Be_Seated:98
+Update_Table_Record:29
+Get_Table_Record:31
