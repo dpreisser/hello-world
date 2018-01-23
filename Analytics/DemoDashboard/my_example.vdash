@@ -2,11 +2,15 @@
     "version"   : "0.1",
     "organization" : "group_file",
     "display_requirements" : [
-        "my_example_plugin_enabled"
+        "my_example_plugin_enabled",
+        "my_example_file_plugin_enabled",
+        "my_example_function_plugin_enabled"
     ],
     "head_metrics" : [
         "numCharsFunc",
-        "avgNumCharsFunc"
+        "avgNumCharsFunc",
+	"numAnnotatedFiles",
+	"numFunctionalRequirements"
     ],
     "dashboard" : {
         "name"          : "My Example Dashboard",
