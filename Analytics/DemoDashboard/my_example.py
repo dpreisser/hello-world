@@ -11,9 +11,11 @@ class ExamplePlugin(FunctionPlugin):
 
     def initialize( self ):
         self.myDict = {}
-        self.charMetricsFile = os.path.join( "C:\\", "Demo", "Dashboard", "lab_source_code", "manager_diner", "char_metrics.txt" )
+        # self.charMetricsFile = os.path.join( "C:\\", "Demo", "Dashboard", "lab_source_code", "manager_diner", "char_metrics.txt" )
 
     def readData( self ):
+
+        print( "Reading file: %s" % self.charMetricsFile )
 
         fileStream = open( self.charMetricsFile, "rt" )
 
@@ -31,12 +33,20 @@ class ExamplePlugin(FunctionPlugin):
 
     def get_object_data(self, original_object, context):
 
-        self.charMetricsFile = os.path.join( context["vcm_dir"][0], "char_metrics.txt" )
+        # self.charMetricsFile = os.path.join( context["vcm_dir"][0], "char_metrics.txt" )
+        charMetricsFile_comp = context["charMetricsFile"]
+        self.charMetricsFile = ""
+        for idx in range( len(charMetricsFile_comp) ):
+           self.charMetricsFile = os.path.join( self.charMetricsFile, charMetricsFile_comp[idx] )
 
         if 0 == len( self.myDict.keys() ):
             self.readData()
 
+        path = original_object["path"]
         name = original_object["name"]
+
+        # print( "path, name: %s, %s" %(path,name) )
+
         return { "value": self.myDict.get(name,0) }
 
     def get_tags(self):

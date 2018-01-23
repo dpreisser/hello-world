@@ -17,8 +17,23 @@ class ExamplePluginFile( FunctionPlugin ):
 
 
     def initialize( self ):
+
+        self.initialized = False
+
+        self.using_get_object_data = True
+
         self.annotatedFiles = {}
         self.annotatedData = {}
+
+
+    def init( self, context ):
+
+        self.annotationRoot = context.get( "annotationRoot", os.getcwd() )
+        self.annotationDirectories = context.get( "annotationDirectories", [] )
+        self.extensionMarker = context.get( "extensionMarker", "." )
+        self.extension = context.get( "extension", "" )
+
+        self.initialized = True
 
 
     def setProperties( self, sourceFileName ):
@@ -26,6 +41,17 @@ class ExamplePluginFile( FunctionPlugin ):
         dirname = os.path.dirname( sourceFileName )
         
         for annotatedFile in self.annotatedFiles[sourceFileName]:
+
+            if not os.path.isabs(annotatedFile):
+
+                if len(self.annotationDirectories) > 0:
+                    annotationDir = self.annotationDirectories[0]
+                else:
+                    annotationDir = ""
+
+                annotationDir = os.path.join( self.annotationRoot, annotationDir )
+                annotatedFile = os.path.join( annotationDir, annotatedFile )
+                annotatedFile = os.path.normpath( annotatedFile )
 
             try:
                 stream = open( annotatedFile, "rt" )
@@ -43,15 +69,18 @@ class ExamplePluginFile( FunctionPlugin ):
                 dataSet = theData["units"][idx]
                 fileName = dataSet["fileName"]
 
-                if not os.path.isabs( fileName ):
+                if self.using_get_object_data and ( not os.path.isabs(fileName) ):
                     fileName = os.path.join( dirname, fileName )
                     fileName = os.path.normpath( fileName )
 
-                print( "Stored with key: %s" % fileName )
+                print( "Add to annotatedData: %s" % fileName )
                 self.annotatedData[fileName] = dataSet
 
 
     def get_object_data(self, original_object, context):
+
+        if not self.initialized:
+            self.init( context )
 
         fileName = original_object["path"]
         fileName = os.path.normpath( fileName )
@@ -60,7 +89,7 @@ class ExamplePluginFile( FunctionPlugin ):
         if not fileName in self.annotatedFiles.keys():
 
             self.annotatedFiles[fileName] = getAnnotatedFiles( fileName )
-            print( self.annotatedFiles[fileName] )
+            print( "Add to annotatedFiles: %s" % str(self.annotatedFiles[fileName]) )
 
             self.setProperties( fileName )
 

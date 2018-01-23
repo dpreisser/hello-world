@@ -142,7 +142,7 @@ class ExamplePluginFile( FilePlugin ):
         if not fileName in self.annotatedFiles.keys():
 
             self.annotatedFiles[fileName] = getAnnotatedFiles( fileName )
-            print( "Add annotatedFiles: %s" % str(self.annotatedFiles[fileName]) )
+            print( "Add to annotatedFiles: %s" % str(self.annotatedFiles[fileName]) )
 
             self.setProperties( fileName )
 

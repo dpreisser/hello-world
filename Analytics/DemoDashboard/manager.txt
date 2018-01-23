@@ -1,0 +1,26 @@
+{
+  "units" : [
+	      {
+	        "name" : "manager",
+		"fileName" : "manager.c",
+  	     	"author" : "XYZ",
+  	     	"version" : "0.9",
+	     	"comments" : "General",
+		"subroutines" : [
+			      	  {
+  	       	      		    "name" : "Place_Order",
+				    "requirements" : {
+		   		     		       "functional" : [ "FR14", "FR15", "FR16", "FR17" ]
+    				    		     },
+      		   		    "comments" : "Do we get a dessert?"
+		 		  },
+				  { "name" : "Clear_Table",
+		   		    "requirements" : {
+		   		      		       "functional" : [ "FR18", "FR19", "FR20", "FR21" ]
+				    		     },
+      		    		    "comments" : "Guests leave and have paid."
+    		  		  }
+				]
+		}
+	    ]
+}
