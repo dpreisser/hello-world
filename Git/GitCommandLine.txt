@@ -46,6 +46,7 @@
    a) git branch: Shows the branches and which one is active (marked with *).
    b) git branch <branch>: Creates a new <branch> without making it active.
    c) git branch -d <branch>: Deletes <branch>.
+   d) git push --delete <your memo> <branch>: Deletes <branch> on the server.
 
 8) a) git checkout <branch>: Switch to existing <branch>.
    b) git checkout -b <branch>: Creates a new <branch> and makes it active.
@@ -86,7 +87,7 @@
     e) keep: Merges changes between HEAD and <commit> into relevant files.
        	     Not possible if file in working tree is also different to HEAD.
 
-15) git rebase foo bar:
+17) git rebase foo bar:
     This needs some explanation:
 
     Assume three branches with letters A, B, C, ... to mark the sequence of commits
